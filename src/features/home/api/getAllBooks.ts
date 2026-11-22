@@ -15,5 +15,6 @@ export const getAllBooks = async (query: string): Promise<Book[]> => {
     author: v.authors?.join(', ') ?? 'Unknown',
     rating: v.averageRating ?? 0,
     cover: v.imageLinks?.thumbnail,
+    previewLink: v.previewLink,
   }));
 };

@@ -22,6 +22,7 @@ export type Book = {
   author: string;
   rating: number;
   cover: string;
+  previewLink: string;
 };
 
 export type BooksState = {

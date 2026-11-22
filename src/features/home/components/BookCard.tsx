@@ -1,59 +1,56 @@
+import React, { useCallback } from 'react';
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Book } from '../types/bookType';
 
 type Props = {
-  title: string;
-  subtitle?: string;
-  author: string;
-  rating: number;
-  cover: string;
-  onPress: () => void;
+  book: Book
+  onPress: (book: Book) => void;
   variant?: string;
 };
 
-export default function BookCard({
-  title,
-  subtitle,
-  author,
-  rating,
-  cover,
+function BookCard({
+  book,
   onPress,
   variant = 'row',
 }: Props) {
   const compact = variant === 'compact';
+  const handlePress = useCallback(() => onPress(book), [book, onPress]);
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       style={({ pressed }) => [
         compact ? styles.compactCard : styles.rowCard,
         pressed && styles.pressed,
       ]}
     >
       <Image
-        source={{ uri: cover }}
+        source={{ uri: book.cover }}
         style={compact ? styles.compactCover : styles.rowCover}
       />
       <View style={compact ? styles.compactInfo : styles.rowInfo}>
         <Text style={styles.title} numberOfLines={2}>
-          {title}
+          {book.title}
         </Text>
-        {subtitle ? (
+        {book.subtitle ? (
           <Text style={styles.subtitle} numberOfLines={1}>
-            {subtitle}
+            {book.subtitle}
           </Text>
         ) : null}
         <Text style={styles.author} numberOfLines={1}>
-          Authors: {author}
+          Authors: {book.author}
         </Text>
         <View style={styles.ratingRow}>
           <Ionicons name="star" color="gold" size={12} />
-          <Text style={styles.rating}>{rating.toFixed(1)}</Text>
+          <Text style={styles.rating}>{book.rating.toFixed(1)}</Text>
         </View>
       </View>
     </Pressable>
   );
 }
+
+export default React.memo(BookCard);
 
 const shadow = {
   shadowColor: '#000',
@@ -82,19 +79,20 @@ const styles = StyleSheet.create({
 
   compactCard: {
     width: 140,
+    height:300,
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 10,
-    marginRight: 14,
+    marginRight: 12,
     ...shadow,
   },
   compactCover: {
     width: '100%',
-    height: 180,
+    height: 150,
     borderRadius: 10,
     backgroundColor: '#eee',
   },
-  compactInfo: { marginTop: 10 },
+  compactInfo: { marginTop: 10, flex: 1 },
 
   pressed: { opacity: 0.85, transform: [{ scale: 0.98 }] },
   title: { fontSize: 16, fontFamily: 'Cairo-SemiBold', color: '#111' },

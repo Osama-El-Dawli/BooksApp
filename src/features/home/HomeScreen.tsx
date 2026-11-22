@@ -9,55 +9,85 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BookCard from './components/BookCard';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { bookThunk } from './redux/bookThunk';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Book } from './types/bookType';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/types';
+import { useNavigation } from '@react-navigation/native';
+import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
+import CustomHeader from '../../components/CustomHeader';
 
 function SectionTitle({ children }: { children: string }) {
   return <Text style={styles.sectionTitle}>{children}</Text>;
 }
 
+type nav = NativeStackNavigationProp<RootStackParamList>;
+
 export default function HomeScreen() {
+  const navigation = useNavigation<nav>();
   const dispatch = useAppDispatch();
-  const {
-    allBooks,
-    featuredBooks,
-    isLoading,
-    error,
-  } = useAppSelector(state => state.books);
+  const { allBooks, featuredBooks, isLoading, error } = useAppSelector(
+    state => state.books,
+  );
 
   useEffect(() => {
     dispatch(bookThunk('all'));
     dispatch(bookThunk('featured'));
   }, []);
 
-  const Header = (
-    <View>
-      <View style={styles.header}>
-        <Text style={styles.heading}>Discover Books</Text>
+  const handelPress = useCallback((book: Book) => {
+    navigation.navigate('bookDetails', { book: book });
+  }, []);
+
+  const featuredBooksItems = useCallback(
+    ({ item, index }: { item: Book; index: number }) => (
+      <Animated.View
+        entering={FadeInRight.springify()
+          .damping(20)
+          .duration(600)
+          .delay(100 * index)}
+      >
+        <BookCard book={item} variant="compact" onPress={handelPress} />
+      </Animated.View>
+    ),
+    [handelPress],
+  );
+
+  const allBooksItems = useCallback(
+    ({ item, index }: { item: Book; index: number }) => (
+      <Animated.View
+        entering={FadeInDown.springify()
+          .damping(20)
+          .duration(600)
+          .delay(index * 100)}
+      >
+        <BookCard book={item} variant="row" onPress={handelPress} />
+      </Animated.View>
+    ),
+    [],
+  );
+
+  const keyExtractor = useCallback((item: Book) => item.id, []);
+
+  const Header = useMemo(
+    () => (
+      <View>
+        <SectionTitle>Featured</SectionTitle>
+        <FlatList
+          horizontal
+          data={featuredBooks}
+          keyExtractor={keyExtractor}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalList}
+          renderItem={featuredBooksItems}
+        />
+
+        <SectionTitle>All Books</SectionTitle>
       </View>
-
-      <SectionTitle>Featured</SectionTitle>
-      <FlatList
-        horizontal
-        data={featuredBooks}
-        keyExtractor={item => item.id}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.horizontalList}
-        renderItem={({ item }) => (
-          <BookCard
-            variant="compact"
-            title={item.title}
-            author={item.author}
-            rating={item.rating}
-            cover={item.cover}
-            onPress={() => console.log('Pressed', item.title)}
-          />
-        )}
-      />
-
-      <SectionTitle>All Books</SectionTitle>
-    </View>
+    ),
+    [featuredBooks, keyExtractor, featuredBooksItems],
   );
 
   if (isLoading) {
@@ -87,23 +117,14 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <CustomHeader title="Discover Books" />
       <FlatList
         data={allBooks}
-        keyExtractor={item => item.id}
+        keyExtractor={keyExtractor}
         ListHeaderComponent={Header}
         contentContainerStyle={styles.verticalList}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <BookCard
-            variant="row"
-            title={item.title}
-            subtitle={item.subtitle}
-            author={item.author}
-            rating={item.rating}
-            cover={item.cover}
-            onPress={() => console.log('Pressed', item.title)}
-          />
-        )}
+        renderItem={allBooksItems}
       />
     </SafeAreaView>
   );
@@ -120,13 +141,6 @@ const styles = StyleSheet.create({
   },
   verticalList: { paddingHorizontal: 20, paddingBottom: 30 },
   horizontalList: { paddingVertical: 6, paddingRight: 20 },
-  header: { marginTop: 20, marginBottom: 10 },
-  heading: {
-    fontSize: 30,
-    fontFamily: 'Cairo-Bold',
-    color: '#000',
-    marginTop: 4,
-  },
   sectionTitle: {
     fontSize: 20,
     fontFamily: 'Cairo-SemiBold',
