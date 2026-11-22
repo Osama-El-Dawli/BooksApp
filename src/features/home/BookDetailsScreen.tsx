@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,6 +8,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import CustomButton from '../../components/CustomButton';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import BookDetailsItem from './components/BookDetailsItem';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { toggleFavorites } from './redux/bookSlice';
+import { Book } from './types/bookType';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -15,6 +18,14 @@ export default function BookDetailsScreen() {
   const route = useRoute<RouteProp<RootStackParamList, 'bookDetails'>>();
   const { book } = route.params;
   const navigate = useNavigation<Nav>();
+  const dispatch = useAppDispatch();
+  const isFavorite = useAppSelector(state =>
+    state.books.favorites.some(b => b.id === book.id),
+  );
+  const handleToggle = useCallback(
+    (book: Book) => dispatch(toggleFavorites(book)),
+    [dispatch],
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +38,11 @@ export default function BookDetailsScreen() {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <BookDetailsItem book={book} />
+        <BookDetailsItem
+          isFavorite={isFavorite}
+          onToggleFavorite={handleToggle}
+          book={book}
+        />
       </ScrollView>
       <Animated.View
         entering={FadeInDown.delay(600).duration(500)}
@@ -58,3 +73,6 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: { alignSelf: 'stretch', marginTop: 24 },
 });
+function dispatch(arg0: { payload: any; type: 'books/toggleFavorites' }): any {
+  throw new Error('Function not implemented.');
+}

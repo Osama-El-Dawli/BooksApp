@@ -11,24 +11,12 @@ import Animated, {
 } from 'react-native-reanimated';
 import CustomHeader from '../../components/CustomHeader';
 import CustomButton from '../../components/CustomButton';
-import { useAppDispatch, useAppSelector } from '../../store/store';
 import BookCard from '../home/components/BookCard';
-import { toggleFavorites } from '../home/redux/bookSlice';
+import useFavorite from './hook/useFavorite';
 
 export default function FavoritesScreen() {
-  const navigation = useNavigation();
-  const dispatch = useAppDispatch();
-  const favorites = useAppSelector(state => state.books.favorites);
-
-  const handleToggle = useCallback(
-    book => dispatch(toggleFavorites(book)),
-    [dispatch],
-  );
-
-  const handlePress = useCallback(
-    book => navigation.navigate('bookDetails', { book }),
-    [navigation],
-  );
+  const { favorites, navigation, handleBookPress, handleToggle } =
+    useFavorite();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -86,7 +74,7 @@ export default function FavoritesScreen() {
                 book={item}
                 isFavorite
                 onToggleFavorite={handleToggle}
-                onPress={handlePress}
+                onPress={handleBookPress}
               />
             </Animated.View>
           )}

@@ -1,10 +1,20 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import { Book } from '../types/bookType';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function BookDetailsItem({ book }: { book: Book }) {
+type Props = {
+  book: Book;
+  isFavorite?: boolean;
+  onToggleFavorite?: (book: Book) => void;
+};
+
+export default function BookDetailsItem({
+  book,
+  isFavorite = false,
+  onToggleFavorite: onToggleFavourite,
+}: Props) {
   return (
     <View style={styles.container}>
       <Animated.View
@@ -16,6 +26,18 @@ export default function BookDetailsItem({ book }: { book: Book }) {
           source={{ uri: book.cover }}
           style={styles.image}
         />
+
+        <Pressable
+          onPress={() => onToggleFavourite?.(book)}
+          hitSlop={8}
+          style={({ pressed }) => [styles.favButton, pressed && styles.pressed]}
+        >
+          <Icon
+            name={isFavorite ? 'favorite' : 'favorite-border'}
+            size={22}
+            color={isFavorite ? '#000' : '#6b7280'}
+          />
+        </Pressable>
       </Animated.View>
 
       <Animated.Text
@@ -53,7 +75,7 @@ export default function BookDetailsItem({ book }: { book: Book }) {
 }
 
 const styles = StyleSheet.create({
-  container: { alignItems: 'center'},
+  container: { alignItems: 'center' },
   imageWrapper: {
     width: 200,
     aspectRatio: 2 / 3,
@@ -65,6 +87,20 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     elevation: 8,
   },
+  favButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: 'rgba(255,255,255,0.92)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+    elevation: 10,
+  },
+  pressed: { opacity: 0.85, transform: [{ scale: 0.92 }] },
   image: {
     width: '100%',
     height: '100%',
