@@ -8,38 +8,29 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BookCard from './components/BookCard';
-import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useCallback, useEffect, useMemo } from 'react';
-import { bookThunk } from './redux/bookThunk';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Book } from './types/bookType';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigation/types';
-import { useNavigation } from '@react-navigation/native';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import CustomHeader from '../../components/CustomHeader';
+import useHomeScreen from './hooks/useHomeScreen';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function SectionTitle({ children }: { children: string }) {
   return <Text style={styles.sectionTitle}>{children}</Text>;
 }
 
-type nav = NativeStackNavigationProp<RootStackParamList>;
-
 export default function HomeScreen() {
-  const navigation = useNavigation<nav>();
-  const dispatch = useAppDispatch();
-  const { allBooks, featuredBooks, isLoading, error } = useAppSelector(
-    state => state.books,
-  );
-
-  useEffect(() => {
-    dispatch(bookThunk('all'));
-    dispatch(bookThunk('featured'));
-  }, []);
-
-  const handelPress = useCallback((book: Book) => {
-    navigation.navigate('bookDetails', { book: book });
-  }, []);
+  const {
+    allBooks,
+    handelPress,
+    retry,
+    featuredBooks,
+    isLoading,
+    error,
+    navigation,
+    handleToggleFavorite,
+    favoritesIds,
+  } = useHomeScreen();
 
   const featuredBooksItems = useCallback(
     ({ item, index }: { item: Book; index: number }) => (
@@ -49,10 +40,16 @@ export default function HomeScreen() {
           .duration(600)
           .delay(100 * index)}
       >
-        <BookCard book={item} variant="compact" onPress={handelPress} />
+        <BookCard
+          book={item}
+          variant="compact"
+          onPress={handelPress}
+          isFavorite={favoritesIds.has(item.id)}
+          onToggleFavorite={handleToggleFavorite}
+        />
       </Animated.View>
     ),
-    [handelPress],
+    [handelPress, favoritesIds, handleToggleFavorite],
   );
 
   const allBooksItems = useCallback(
@@ -63,10 +60,16 @@ export default function HomeScreen() {
           .duration(600)
           .delay(index * 100)}
       >
-        <BookCard book={item} variant="row" onPress={handelPress} />
+        <BookCard
+          book={item}
+          variant="row"
+          onPress={handelPress}
+          isFavorite={favoritesIds.has(item.id)}
+          onToggleFavorite={handleToggleFavorite}
+        />
       </Animated.View>
     ),
-    [],
+    [handleToggleFavorite, favoritesIds, handelPress],
   );
 
   const keyExtractor = useCallback((item: Book) => item.id, []);
@@ -105,10 +108,7 @@ export default function HomeScreen() {
         <Icon name="error-outline" size={48} color="#ef4444" />
         <Text style={styles.errorTitle}>Something went wrong</Text>
         <Text style={styles.errorMessage}>{error}</Text>
-        <Pressable
-          style={styles.retryButton}
-          onPress={() => dispatch(bookThunk('all'))}
-        >
+        <Pressable style={styles.retryButton} onPress={retry}>
           <Text style={styles.retryText}>Try Again</Text>
         </Pressable>
       </SafeAreaView>
@@ -117,7 +117,13 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CustomHeader title="Discover Books" />
+      <CustomHeader
+        title="Discover Books"
+        showProfile
+        onProfilePress={() => {
+          navigation.navigate('profileScreen');
+        }}
+      />
       <FlatList
         data={allBooks}
         keyExtractor={keyExtractor}

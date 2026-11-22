@@ -30,4 +30,5 @@ export type BooksState = {
   featuredBooks: Book[];
   error: string | null;
   isLoading: boolean;
+  favorites: Book[];
 };

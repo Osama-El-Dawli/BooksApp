@@ -11,6 +11,8 @@ export type RootStackParamList = {
     previewLink: string;
     title: string;
   };
+  profileScreen: undefined;
+  favoritesScreen: undefined;
 };
 
 export type ScreenConfig = {

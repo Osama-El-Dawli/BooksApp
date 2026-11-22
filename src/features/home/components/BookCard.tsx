@@ -4,8 +4,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Book } from '../types/bookType';
 
 type Props = {
-  book: Book
+  book: Book;
   onPress: (book: Book) => void;
+  onToggleFavorite?: (book: Book) => void;
+  isFavorite?: boolean;
   variant?: string;
 };
 
@@ -13,9 +15,15 @@ function BookCard({
   book,
   onPress,
   variant = 'row',
+  onToggleFavorite: onToggleFavorite,
+  isFavorite: isFavorite = false,
 }: Props) {
   const compact = variant === 'compact';
   const handlePress = useCallback(() => onPress(book), [book, onPress]);
+  const handleFavorite = useCallback(
+    () => onToggleFavorite?.(book),
+    [book, onToggleFavorite],
+  );
 
   return (
     <Pressable
@@ -29,6 +37,17 @@ function BookCard({
         source={{ uri: book.cover }}
         style={compact ? styles.compactCover : styles.rowCover}
       />
+      <Pressable
+        onPress={handleFavorite}
+        hitSlop={8}
+        style={[styles.favButton, compact ? styles.favCompact : styles.favRow]}
+      >
+        <Ionicons
+          name={isFavorite ? 'heart' : 'heart-outline'}
+          size={18}
+          color={isFavorite ? '#000000' : '#6b7280'}
+        />
+      </Pressable>
       <View style={compact ? styles.compactInfo : styles.rowInfo}>
         <Text style={styles.title} numberOfLines={2}>
           {book.title}
@@ -75,11 +94,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#eee',
   },
-  rowInfo: { flex: 1, marginLeft: 14, justifyContent: 'center' },
-
+  rowInfo: {
+    flex: 1,
+    marginLeft: 14,
+    justifyContent: 'center',
+    paddingRight: 36,
+  },
   compactCard: {
     width: 140,
-    height:300,
+    height: 300,
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 10,
@@ -115,4 +138,16 @@ const styles = StyleSheet.create({
     color: '#374151',
     marginLeft: 8,
   },
+  favButton: {
+    position: 'absolute',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#eeeeee',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  favRow: { top: 12, right: 12 },
+  favCompact: { top: 16, right: 16 },
 });

@@ -1,11 +1,10 @@
-import { Text, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import React from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomHeader from '../../components/CustomHeader';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import CustomButton from '../../components/CustomButton';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import BookDetailsItem from './components/BookDetailsItem';
@@ -29,22 +28,22 @@ export default function BookDetailsScreen() {
         showsVerticalScrollIndicator={false}
       >
         <BookDetailsItem book={book} />
-
-        <Animated.View
-          entering={FadeInDown.delay(600).duration(500)}
-          style={styles.buttonWrapper}
-        >
-          <CustomButton
-            text="Preview"
-            onPress={() =>
-              navigate.navigate('bookWebView', {
-                previewLink: book.previewLink,
-                title: book.title,
-              })
-            }
-          />
-        </Animated.View>
       </ScrollView>
+      <Animated.View
+        entering={FadeInDown.delay(600).duration(500)}
+        style={styles.buttonWrapper}
+      >
+        <CustomButton
+          style={{ margin: 16, marginBottom: 24 }}
+          text="Preview"
+          onPress={() =>
+            navigate.navigate('bookWebView', {
+              previewLink: book.previewLink,
+              title: book.title,
+            })
+          }
+        />
+      </Animated.View>
     </SafeAreaView>
   );
 }

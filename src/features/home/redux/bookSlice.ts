@@ -5,6 +5,7 @@ import { bookThunk } from './bookThunk';
 const initialState: BooksState = {
   allBooks: [],
   featuredBooks: [],
+  favorites: [],
   error: null,
   isLoading: false,
 };
@@ -12,7 +13,18 @@ const initialState: BooksState = {
 const BookSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleFavorites: (state, action) => {
+      const book = action.payload;
+      const exist = state.favorites.some(item => item.id === book.id);
+
+      if (exist) {
+        state.favorites = state.favorites.filter(item => item.id !== book.id);
+      } else {
+        state.favorites.push(book);
+      }
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(bookThunk.fulfilled, (state, action) => {
@@ -38,4 +50,5 @@ const BookSlice = createSlice({
   },
 });
 
+export const { toggleFavorites } = BookSlice.actions;
 export default BookSlice.reducer;

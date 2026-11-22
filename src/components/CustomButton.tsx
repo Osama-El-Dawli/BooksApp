@@ -1,16 +1,24 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  ViewStyle,
+  StyleProp,
+} from 'react-native';
 import React from 'react';
 
 type Props = {
   text: string;
   onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
 };
 
-export default function CustomButton({ text, onPress }: Props) {
+export default function CustomButton({ text, onPress, style }: Props) {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
+      style={({ pressed }) => [style, styles.btn, pressed && styles.pressed]}
     >
       <Text style={styles.text}>{text}</Text>
     </Pressable>
