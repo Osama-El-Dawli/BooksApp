@@ -13,7 +13,7 @@ type Props = {
 export default function BookDetailsItem({
   book,
   isFavorite = false,
-  onToggleFavorite: onToggleFavourite,
+  onToggleFavorite: onToggleFavorite,
 }: Props) {
   return (
     <View style={styles.container}>
@@ -28,7 +28,7 @@ export default function BookDetailsItem({
         />
 
         <Pressable
-          onPress={() => onToggleFavourite?.(book)}
+          onPress={() => onToggleFavorite?.(book)}
           hitSlop={8}
           style={({ pressed }) => [styles.favButton, pressed && styles.pressed]}
         >

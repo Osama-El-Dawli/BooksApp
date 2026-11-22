@@ -73,6 +73,3 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: { alignSelf: 'stretch', marginTop: 24 },
 });
-function dispatch(arg0: { payload: any; type: 'books/toggleFavorites' }): any {
-  throw new Error('Function not implemented.');
-}
