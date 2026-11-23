@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select image/video from photos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Capture Image</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -34,7 +38,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
@@ -79,6 +83,10 @@
 		<string>Cairo-Medium.ttf</string>
 		<string>Cairo-Regular.ttf</string>
 		<string>Cairo-SemiBold.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Feather.ttf</string>
 	</array>
 </dict>
 </plist>

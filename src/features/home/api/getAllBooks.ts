@@ -14,7 +14,7 @@ export const getAllBooks = async (query: string): Promise<Book[]> => {
     subtitle: v.subtitle,
     author: v.authors?.join(', ') ?? 'Unknown',
     rating: v.averageRating ?? 0,
-    cover: v.imageLinks?.thumbnail,
-    previewLink: v.previewLink,
+    cover: v.imageLinks?.thumbnail.replace('http', 'https'),
+    previewLink: v.previewLink
   }));
 };

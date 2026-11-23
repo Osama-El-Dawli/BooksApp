@@ -1,5 +1,5 @@
 {
   "extends": "@react-native/typescript-config",
-  "include": ["**/*.ts", "**/*.tsx", ".env.d.ts", "src/features/favorites/redux/favoriteSlice.js"],
+  "include": ["**/*.ts", "**/*.tsx", ".env.d.ts", "src/features/favorites/redux/favoriteSlice.js", "src/features/profile/hooks/useImagePicker.jsx"],
   "exclude": ["**/node_modules", "**/Pods"]
 }

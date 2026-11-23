@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Pressable,
+  Image,
+} from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
@@ -6,9 +13,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import CustomHeader from '../../components/CustomHeader';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import useImagePicker from './hooks/useImagePicker';
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
+  const { showPicker, imageUri } = useImagePicker();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +36,21 @@ export default function ProfileScreen() {
           entering={ZoomIn.duration(500).springify().damping(100)}
           style={styles.avatarWrapper}
         >
-          <Icon name="person" size={100} color="#353535" />
+          <Pressable
+            onPress={showPicker}
+            accessibilityRole="button"
+            accessibilityLabel="Change profile photo"
+            style={styles.avatarWrapper}
+          >
+            {imageUri ? (
+              <Image source={{ uri: imageUri }} style={styles.avatarImage} />
+            ) : (
+              <Icon name="person" size={100} color="#353535" />
+            )}
+            <View style={styles.cameraBadge}>
+              <Icon name="photo-camera" size={18} color="#fff" />
+            </View>
+          </Pressable>
         </Animated.View>
 
         <Animated.Text
@@ -82,6 +105,24 @@ const styles = StyleSheet.create({
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
     elevation: 8,
+  },
+  avatarImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+  },
+  cameraBadge: {
+    position: 'absolute',
+    bottom: 4,
+    right: 4,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#353535',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#f5f5f5',
   },
   name: {
     fontSize: 32,

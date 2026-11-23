@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-BooksApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-BooksApp.a */; };
+		0FC0298CD3D24E34BD90F8D8 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 555D3CE062724F3B98F64AE4 /* Cairo-Regular.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2BC235E4E52A4B498F9D3DC6 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AA20A9DB8974583BFE5255C /* Cairo-Bold.ttf */; };
+		5E4E5DFDEFDB408782ECE1EF /* Cairo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6DD76AC8A4BFE9F789ABF /* Cairo-Medium.ttf */; };
+		5FFC9391BA144AB5AB73CCA5 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E3D4EEBD1804A67A6343A74 /* Cairo-SemiBold.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		761780EF2CA45674006654EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EE2CA45674006654EF /* SceneDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		2BC235E4E52A4B498F9D3DC6 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AA20A9DB8974583BFE5255C /* Cairo-Bold.ttf */; };
-		5E4E5DFDEFDB408782ECE1EF /* Cairo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6DD76AC8A4BFE9F789ABF /* Cairo-Medium.ttf */; };
-		0FC0298CD3D24E34BD90F8D8 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 555D3CE062724F3B98F64AE4 /* Cairo-Regular.ttf */; };
-		5FFC9391BA144AB5AB73CCA5 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E3D4EEBD1804A67A6343A74 /* Cairo-SemiBold.ttf */; };
+		E4142C4B1F7C28B33F023BC6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,17 +24,17 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BooksApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BooksApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = BooksApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1DB6DD76AC8A4BFE9F789ABF /* Cairo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Cairo-Medium.ttf"; path = "../src/assets/fonts/Cairo-Medium.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-BooksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooksApp.debug.xcconfig"; path = "Target Support Files/Pods-BooksApp/Pods-BooksApp.debug.xcconfig"; sourceTree = "<group>"; };
+		555D3CE062724F3B98F64AE4 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Cairo-Regular.ttf"; path = "../src/assets/fonts/Cairo-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-BooksApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooksApp.release.xcconfig"; path = "Target Support Files/Pods-BooksApp/Pods-BooksApp.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-BooksApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BooksApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BooksApp/AppDelegate.swift; sourceTree = "<group>"; };
 		761780EE2CA45674006654EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = BooksApp/SceneDelegate.swift; sourceTree = "<group>"; };
+		7E3D4EEBD1804A67A6343A74 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Cairo-SemiBold.ttf"; path = "../src/assets/fonts/Cairo-SemiBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = BooksApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8AA20A9DB8974583BFE5255C /* Cairo-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Cairo-Bold.ttf"; path = "../src/assets/fonts/Cairo-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		8AA20A9DB8974583BFE5255C /* Cairo-Bold.ttf */ = {isa = PBXFileReference; name = "Cairo-Bold.ttf"; path = "../src/assets/fonts/Cairo-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1DB6DD76AC8A4BFE9F789ABF /* Cairo-Medium.ttf */ = {isa = PBXFileReference; name = "Cairo-Medium.ttf"; path = "../src/assets/fonts/Cairo-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		555D3CE062724F3B98F64AE4 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; name = "Cairo-Regular.ttf"; path = "../src/assets/fonts/Cairo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7E3D4EEBD1804A67A6343A74 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; name = "Cairo-SemiBold.ttf"; path = "../src/assets/fonts/Cairo-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,18 @@
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 			);
 			name = BooksApp;
+			sourceTree = "<group>";
+		};
+		1B1412B3D1AF4C498143756C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8AA20A9DB8974583BFE5255C /* Cairo-Bold.ttf */,
+				1DB6DD76AC8A4BFE9F789ABF /* Cairo-Medium.ttf */,
+				555D3CE062724F3B98F64AE4 /* Cairo-Regular.ttf */,
+				7E3D4EEBD1804A67A6343A74 /* Cairo-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -108,18 +121,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		1B1412B3D1AF4C498143756C /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				8AA20A9DB8974583BFE5255C /* Cairo-Bold.ttf */,
-				1DB6DD76AC8A4BFE9F789ABF /* Cairo-Medium.ttf */,
-				555D3CE062724F3B98F64AE4 /* Cairo-Regular.ttf */,
-				7E3D4EEBD1804A67A6343A74 /* Cairo-SemiBold.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -187,6 +188,7 @@
 				5E4E5DFDEFDB408782ECE1EF /* Cairo-Medium.ttf in Resources */,
 				0FC0298CD3D24E34BD90F8D8 /* Cairo-Regular.ttf in Resources */,
 				5FFC9391BA144AB5AB73CCA5 /* Cairo-SemiBold.ttf in Resources */,
+				E4142C4B1F7C28B33F023BC6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +401,10 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -406,8 +412,13 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -464,6 +475,10 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -471,8 +486,12 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

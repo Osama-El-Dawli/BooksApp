@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Book } from '../types/bookType';
-import { opacity } from 'react-native-reanimated/lib/typescript/Colors';
 
 type Props = {
   book: Book;
