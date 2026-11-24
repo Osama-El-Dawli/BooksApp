@@ -10,15 +10,18 @@ import AppNavigator from './navigation/AppNavigator';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { persistor, store } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
   return (
     <Provider store={store}>
-      <SafeAreaProvider style={{ direction: 'ltr' }}>
-        <StatusBar barStyle="dark-content" />
-        <AppContent />
-      </SafeAreaProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaProvider style={{ direction: 'ltr' }}>
+          <StatusBar barStyle="dark-content" />
+          <AppContent />
+        </SafeAreaProvider>
+      </PersistGate>
     </Provider>
   );
 }

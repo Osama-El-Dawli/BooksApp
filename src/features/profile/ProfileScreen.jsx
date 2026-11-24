@@ -14,10 +14,18 @@ import CustomHeader from '../../components/CustomHeader';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 import useImagePicker from './hooks/useImagePicker';
+import ImageSourceSheet from './components/ImageSourceSheet';
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
-  const { showPicker, imageUri } = useImagePicker();
+  const {
+    showPicker,
+    imageUri,
+    closePicker,
+    openCamera,
+    openGallery,
+    openSheet,
+  } = useImagePicker();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -80,6 +88,13 @@ export default function ProfileScreen() {
           navigation.navigate('favoritesScreen');
         }}
         style={{ margin: 16, marginBottom: 24 }}
+      />
+
+      <ImageSourceSheet
+        visible={openSheet}
+        onCamera={openCamera}
+        onGallery={openGallery}
+        onClose={closePicker}
       />
     </SafeAreaView>
   );

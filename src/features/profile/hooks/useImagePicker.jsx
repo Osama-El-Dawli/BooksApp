@@ -14,6 +14,7 @@ const requestCameraPermission = async () => {
 
 export default function useImagePicker(initialUrl = null) {
   const [imageUri, setImageUri] = useState(initialUrl);
+  const [openSheet, setOpenSheet] = useState(false);
 
   const handleResponse = response => {
     if (response.didCancel) return;
@@ -25,7 +26,11 @@ export default function useImagePicker(initialUrl = null) {
     if (uri) setImageUri(uri);
   };
 
+  const showPicker = () => setOpenSheet(true);
+  const closePicker = () => setOpenSheet(false);
+
   const openCamera = async () => {
+    closePicker();
     if (!(await requestCameraPermission())) {
       Alert.alert(
         'Permission denied',
@@ -36,14 +41,17 @@ export default function useImagePicker(initialUrl = null) {
     launchCamera(options, handleResponse);
   };
 
-  const openGallery = () => launchImageLibrary(options, handleResponse);
+  const openGallery = () => {
+    closePicker();
+    launchImageLibrary(options, handleResponse);
+  };
 
-  const showPicker = () =>
-    Alert.alert('Profile photo', 'Choose a source', [
-      { text: 'Camera', onPress: openCamera },
-      { text: 'Gallery', onPress: openGallery },
-      { text: 'Cancel', style: 'cancel' },
-    ]);
-
-  return { imageUri, showPicker };
+  return {
+    imageUri,
+    showPicker,
+    closePicker,
+    openSheet,
+    openCamera,
+    openGallery,
+  };
 }

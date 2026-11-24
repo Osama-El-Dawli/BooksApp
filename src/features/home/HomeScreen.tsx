@@ -93,7 +93,7 @@ export default function HomeScreen() {
     [featuredBooks, keyExtractor, featuredBooksItems],
   );
 
-  if (isLoading) {
+  if (isLoading && allBooks.length === 0) {
     return (
       <SafeAreaView style={styles.centered}>
         <ActivityIndicator size="large" color="#000" />
@@ -102,7 +102,7 @@ export default function HomeScreen() {
     );
   }
 
-  if (error) {
+  if (error && allBooks.length === 0) {
     return (
       <SafeAreaView style={styles.centered}>
         <Icon name="error-outline" size={48} color="#ef4444" />
