@@ -35,7 +35,7 @@ export default function ProfileScreen() {
         title="Profile"
         showBack
         onBack={() => {
-          navigation.pop();
+          navigation.goBack();
         }}
       />
       <ScrollView

@@ -10,12 +10,9 @@ import Animated, {
   FadeInDown,
   FadeOutRight,
   LinearTransition,
-  ZoomIn,
 } from 'react-native-reanimated';
 import BookCard from '../home/components/BookCard';
 import { Book } from '../home/types/bookType';
-import CustomButton from '../../components/CustomButton';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmptyItems from '../../components/EmptyItems';
 
 type nav = NativeStackNavigationProp<RootStackParamList>;
@@ -49,7 +46,7 @@ export default function CartScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title="My Cart" showBack onBack={() => navigation.pop()} />
+      <CustomHeader title="My Cart" showBack onBack={() => navigation.goBack()} />
       {cartItems.length == 0 ? (
         <EmptyItems
           title="No items in cart yet"

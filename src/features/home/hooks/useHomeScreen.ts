@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../navigation/types';
+import { RootDrawerParamList, RootStackParamList } from '../../../navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -7,10 +7,12 @@ import { bookThunk } from '../redux/bookThunk';
 import { Book } from '../types/bookType';
 import { toggleFavorites } from '../redux/bookSlice';
 
-type nav = NativeStackNavigationProp<RootStackParamList>;
+type drawerNav = NativeStackNavigationProp<RootDrawerParamList>;
+type stackNav = NativeStackNavigationProp<RootStackParamList>;
 
 export default function useHomeScreen() {
-  const navigation = useNavigation<nav>();
+  const stack = useNavigation<stackNav>();
+  const drawer = useNavigation<drawerNav>();
   const dispatch = useAppDispatch();
   const { allBooks, featuredBooks, isLoading, error } = useAppSelector(
     state => state.books,
@@ -36,7 +38,7 @@ export default function useHomeScreen() {
   }, []);
 
   const handelPress = useCallback((book: Book) => {
-    navigation.navigate('bookDetails', { book: book });
+    stack.navigate('bookDetails', { book: book });
   }, []);
 
   const retry = useCallback(() => {
@@ -51,7 +53,8 @@ export default function useHomeScreen() {
     featuredBooks,
     isLoading,
     error,
-    navigation,
+    stack,
+    drawer,
     favoritesIds,
     handleToggleFavorite,
     profileImage,

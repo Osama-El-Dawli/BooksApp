@@ -1,16 +1,11 @@
-import { useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Animated, {
   FadeInDown,
   FadeOutRight,
   LinearTransition,
-  ZoomIn,
 } from 'react-native-reanimated';
 import CustomHeader from '../../components/CustomHeader';
-import CustomButton from '../../components/CustomButton';
 import BookCard from '../home/components/BookCard';
 import useFavorite from './hook/useFavorite';
 import EmptyItems from '../../components/EmptyItems';

@@ -28,7 +28,7 @@ export default function HomeScreen() {
     featuredBooks,
     isLoading,
     error,
-    navigation,
+    drawer,
     handleToggleFavorite,
     favoritesIds,
     profileImage,
@@ -143,10 +143,10 @@ export default function HomeScreen() {
         imageUrl={profileImage}
         showCart
         onCartPress={() => {
-          navigation.navigate('cartScreen');
+          drawer.navigate('cartScreen');
         }}
         onProfilePress={() => {
-          navigation.navigate('profileScreen');
+          drawer.navigate('profileScreen');
         }}
       />
       <FlatList

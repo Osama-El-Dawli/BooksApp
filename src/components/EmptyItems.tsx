@@ -4,7 +4,7 @@ import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import CustomButton from './CustomButton';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/types';
+import { RootDrawerParamList } from '../navigation/types';
 import { useNavigation } from '@react-navigation/native';
 
 type Props = {
@@ -13,9 +13,9 @@ type Props = {
   icon: string;
 };
 
-type Nav = NativeStackNavigationProp<RootStackParamList>;
+type Nav = NativeStackNavigationProp<RootDrawerParamList>;
 
-export default function EmptyItems({title, subTitle, icon}: Props) {
+export default function EmptyItems({ title, subTitle, icon }: Props) {
   const navigation = useNavigation<Nav>();
   return (
     <View style={styles.empty}>
@@ -44,10 +44,7 @@ export default function EmptyItems({title, subTitle, icon}: Props) {
         entering={FadeInDown.delay(400).duration(500)}
         style={styles.emptyButtonWrapper}
       >
-        <CustomButton
-          text="Browse Books"
-          onPress={() => navigation.popTo('home')}
-        />
+        <CustomButton text="Browse Books" onPress={() => navigation.goBack()} />
       </Animated.View>
     </View>
   );

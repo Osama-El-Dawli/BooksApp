@@ -17,7 +17,7 @@ export default function SplashScreen() {
         loop={false}
         autoPlay
         onAnimationFinish={() => {
-          navigation.replace('home');
+          navigation.replace('Main');
         }}
       />
     </View>
