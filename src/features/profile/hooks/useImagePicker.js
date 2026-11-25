@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { startMapper } from 'react-native-reanimated';
+import { updateImageProfile } from '../redux/profileSlice';
 
 const options = { mediaType: 'photo', quality: 1 };
 
@@ -12,8 +15,9 @@ const requestCameraPermission = async () => {
   return result === PermissionsAndroid.RESULTS.GRANTED;
 };
 
-export default function useImagePicker(initialUrl = null) {
-  const [imageUri, setImageUri] = useState(initialUrl);
+export default function useImagePicker() {
+  const dispatch = useAppDispatch();
+  const imageUri = useAppSelector(state => state.profile.imageUrl);
   const [openSheet, setOpenSheet] = useState(false);
 
   const handleResponse = response => {
@@ -23,7 +27,7 @@ export default function useImagePicker(initialUrl = null) {
       return;
     }
     const uri = response.assets?.[0]?.uri;
-    if (uri) setImageUri(uri);
+    if (uri) dispatch(updateImageProfile(uri));
   };
 
   const showPicker = () => setOpenSheet(true);

@@ -5,6 +5,7 @@ import BookDetailsScreen from '../features/home/BookDetailsScreen';
 import BookWebView from '../features/home/BookWebView';
 import ProfileScreen from '../features/profile/ProfileScreen';
 import FavoritesScreen from '../features/favorites/FavoritesScreen';
+import CartScreen from '../features/cart/CartScreen';
 
 export const screens: ScreenConfig[] = [
   { screenName: 'splash', component: SplashScreen },
@@ -13,4 +14,5 @@ export const screens: ScreenConfig[] = [
   { screenName: 'bookWebView', component: BookWebView },
   { screenName: 'profileScreen', component: ProfileScreen },
   { screenName: 'favoritesScreen', component: FavoritesScreen },
+  { screenName: 'cartScreen', component: CartScreen },
 ];

@@ -13,6 +13,7 @@ export type RootStackParamList = {
   };
   profileScreen: undefined;
   favoritesScreen: undefined;
+  cartScreen: undefined;
 };
 
 export type ScreenConfig = {

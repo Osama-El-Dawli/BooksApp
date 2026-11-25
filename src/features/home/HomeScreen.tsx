@@ -30,6 +30,7 @@ export default function HomeScreen() {
     navigation,
     handleToggleFavorite,
     favoritesIds,
+    profileImage,
   } = useHomeScreen();
 
   const featuredBooksItems = useCallback(
@@ -120,6 +121,11 @@ export default function HomeScreen() {
       <CustomHeader
         title="Discover Books"
         showProfile
+        imageUrl={profileImage}
+        showCart
+        onCartPress={() => {
+          navigation.navigate('cartScreen');
+        }}
         onProfilePress={() => {
           navigation.navigate('profileScreen');
         }}
@@ -137,7 +143,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#eee' },
+  container: { flex: 1, backgroundColor: '#f5f5f5' },
   centered: {
     flex: 1,
     backgroundColor: '#eee',

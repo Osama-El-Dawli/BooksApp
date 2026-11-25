@@ -1,5 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import bookReducer from '../features/home/redux/bookSlice';
+import profileReducer from '../features/profile/redux/profileSlice';
+import cartReducer from '../features/cart/redux/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { mmkvStorage } from '../storage/mmkvStorage';
 import {
@@ -19,8 +21,20 @@ const booksPersistConfig = {
   whitelist: ['favorites', 'allBooks', 'featuredBooks'],
 };
 
+const profilePersistConfig = {
+  key: 'profile',
+  storage: mmkvStorage,
+};
+
+const cartPersistConfig = {
+  key: 'cart',
+  storage: mmkvStorage,
+};
+
 const rootReducer = combineReducers({
   books: persistReducer(booksPersistConfig, bookReducer),
+  profile: persistReducer(profilePersistConfig, profileReducer),
+  cart: persistReducer(cartPersistConfig, cartReducer),
 });
 
 export const store = configureStore({

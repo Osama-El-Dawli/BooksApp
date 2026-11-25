@@ -16,6 +16,8 @@ export default function useHomeScreen() {
     state => state.books,
   );
 
+  const profileImage = useAppSelector(state => state.profile.imageUrl);
+
   const favorites = useAppSelector(state => state.books.favorites);
   const favoritesIds = useMemo(
     () => new Set(favorites.map(item => item.id)),
@@ -52,5 +54,6 @@ export default function useHomeScreen() {
     navigation,
     favoritesIds,
     handleToggleFavorite,
+    profileImage,
   };
 }

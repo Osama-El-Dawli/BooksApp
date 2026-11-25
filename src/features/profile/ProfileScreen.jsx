@@ -15,6 +15,7 @@ import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 import useImagePicker from './hooks/useImagePicker';
 import ImageSourceSheet from './components/ImageSourceSheet';
+import { useAppSelector } from '../../store/store';
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
@@ -26,6 +27,7 @@ export default function ProfileScreen() {
     openGallery,
     openSheet,
   } = useImagePicker();
+  const { name, username, email } = useAppSelector(state => state.profile);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -65,21 +67,21 @@ export default function ProfileScreen() {
           entering={FadeInDown.delay(200).duration(500)}
           style={styles.name}
         >
-          Osama Saeid
+          {name}
         </Animated.Text>
 
         <Animated.Text
           entering={FadeInDown.delay(300).duration(500)}
           style={styles.username}
         >
-          @osos_eldawli
+          {username}
         </Animated.Text>
 
         <Animated.Text
           entering={FadeInDown.delay(400).duration(500)}
           style={styles.email}
         >
-          osama@gmail.com
+          {email}
         </Animated.Text>
       </ScrollView>
       <CustomButton
