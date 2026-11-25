@@ -13,6 +13,7 @@ import CustomHeader from '../../components/CustomHeader';
 import CustomButton from '../../components/CustomButton';
 import BookCard from '../home/components/BookCard';
 import useFavorite from './hook/useFavorite';
+import EmptyItems from '../../components/EmptyItems';
 
 export default function FavoritesScreen() {
   const { favorites, navigation, handleBookPress, handleToggle } =
@@ -27,38 +28,11 @@ export default function FavoritesScreen() {
       />
 
       {favorites.length === 0 ? (
-        <View style={styles.empty}>
-          <Animated.View
-            entering={ZoomIn.duration(500).springify().damping(50)}
-            style={styles.emptyIconWrapper}
-          >
-            <Icon name="favorite-border" size={56} color="#000" />
-          </Animated.View>
-
-          <Animated.Text
-            entering={FadeInDown.delay(200).duration(500)}
-            style={styles.emptyTitle}
-          >
-            No favorites yet
-          </Animated.Text>
-
-          <Animated.Text
-            entering={FadeInDown.delay(300).duration(500)}
-            style={styles.emptyText}
-          >
-            Tap the heart on any book to save it here.
-          </Animated.Text>
-
-          <Animated.View
-            entering={FadeInDown.delay(400).duration(500)}
-            style={styles.emptyButtonWrapper}
-          >
-            <CustomButton
-              text="Browse Books"
-              onPress={() => navigation.popTo('home')}
-            />
-          </Animated.View>
-        </View>
+        <EmptyItems
+          title="No favorites yet"
+          subTitle="Tap the heart on any book to save it here."
+          icon="favorite"
+        />
       ) : (
         <Animated.FlatList
           contentContainerStyle={styles.list}

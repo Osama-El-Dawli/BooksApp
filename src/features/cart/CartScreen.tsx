@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import React, { useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomHeader from '../../components/CustomHeader';
@@ -6,15 +6,23 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import useCart from './hooks/useCart';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated, {
+  FadeInDown,
+  FadeOutRight,
+  LinearTransition,
+  ZoomIn,
+} from 'react-native-reanimated';
 import BookCard from '../home/components/BookCard';
 import { Book } from '../home/types/bookType';
+import CustomButton from '../../components/CustomButton';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import EmptyItems from '../../components/EmptyItems';
 
 type nav = NativeStackNavigationProp<RootStackParamList>;
 
 export default function CartScreen() {
   const navigation = useNavigation<nav>();
-  const { cartItems } = useCart();
+  const { cartItems, cartItemIds, handleToggleAddToCart } = useCart();
 
   const cartBooks = useCallback(
     ({ item, index }: { item: Book; index: number }) => (
@@ -23,9 +31,12 @@ export default function CartScreen() {
           .damping(20)
           .duration(600)
           .delay(index * 100)}
+        exiting={FadeOutRight.duration(300)}
       >
         <BookCard
           book={item}
+          isInCart={cartItemIds.has(item.id)}
+          onAddToCart={handleToggleAddToCart}
           variant="row"
           onPress={(book: Book) =>
             navigation.navigate('bookDetails', { book: book })
@@ -37,14 +48,31 @@ export default function CartScreen() {
   );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <CustomHeader title="My Cart" showBack onBack={() => navigation.pop()} />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={cartItems}
-        renderItem={cartBooks}
-        keyExtractor={(item: Book) => item.id}
-      />
+      {cartItems.length == 0 ? (
+        <EmptyItems
+          title="No items in cart yet"
+          subTitle="Tap the cart Icon on any book to save it here."
+          icon="shopping-cart"
+        />
+      ) : (
+        <Animated.FlatList
+          itemLayoutAnimation={LinearTransition.duration(300)}
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+          data={cartItems}
+          renderItem={cartBooks}
+          keyExtractor={(item: Book) => item.id}
+        />
+      )}
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 12,
+    paddingHorizontal: 16,
+  },
+});

@@ -14,6 +14,7 @@ import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import CustomHeader from '../../components/CustomHeader';
 import useHomeScreen from './hooks/useHomeScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import useCart from '../cart/hooks/useCart';
 
 function SectionTitle({ children }: { children: string }) {
   return <Text style={styles.sectionTitle}>{children}</Text>;
@@ -33,6 +34,8 @@ export default function HomeScreen() {
     profileImage,
   } = useHomeScreen();
 
+  const { handleToggleAddToCart, cartItemIds } = useCart();
+
   const featuredBooksItems = useCallback(
     ({ item, index }: { item: Book; index: number }) => (
       <Animated.View
@@ -45,12 +48,20 @@ export default function HomeScreen() {
           book={item}
           variant="compact"
           onPress={handelPress}
+          onAddToCart={handleToggleAddToCart}
+          isInCart={cartItemIds.has(item.id)}
           isFavorite={favoritesIds.has(item.id)}
           onToggleFavorite={handleToggleFavorite}
         />
       </Animated.View>
     ),
-    [handelPress, favoritesIds, handleToggleFavorite],
+    [
+      handelPress,
+      favoritesIds,
+      handleToggleFavorite,
+      handleToggleAddToCart,
+      cartItemIds,
+    ],
   );
 
   const allBooksItems = useCallback(
@@ -64,13 +75,21 @@ export default function HomeScreen() {
         <BookCard
           book={item}
           variant="row"
+          onAddToCart={handleToggleAddToCart}
           onPress={handelPress}
           isFavorite={favoritesIds.has(item.id)}
           onToggleFavorite={handleToggleFavorite}
+          isInCart={cartItemIds.has(item.id)}
         />
       </Animated.View>
     ),
-    [handleToggleFavorite, favoritesIds, handelPress],
+    [
+      handleToggleFavorite,
+      favoritesIds,
+      handelPress,
+      handleToggleAddToCart,
+      cartItemIds,
+    ],
   );
 
   const keyExtractor = useCallback((item: Book) => item.id, []);

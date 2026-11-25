@@ -7,7 +7,9 @@ type Props = {
   book: Book;
   onPress: (book: Book) => void;
   onToggleFavorite?: (book: Book) => void;
+  onAddToCart?: (book: Book) => void;
   isFavorite?: boolean;
+  isInCart?: boolean;
   variant?: string;
 };
 
@@ -15,14 +17,20 @@ function BookCard({
   book,
   onPress,
   variant = 'row',
-  onToggleFavorite: onToggleFavorite,
-  isFavorite: isFavorite = false,
+  onToggleFavorite,
+  onAddToCart,
+  isFavorite = false,
+  isInCart = false,
 }: Props) {
   const compact = variant === 'compact';
   const handlePress = useCallback(() => onPress(book), [book, onPress]);
   const handleFavorite = useCallback(
     () => onToggleFavorite?.(book),
     [book, onToggleFavorite],
+  );
+  const handleAddToCart = useCallback(
+    () => onAddToCart?.(book),
+    [book, onAddToCart],
   );
 
   return (
@@ -69,6 +77,23 @@ function BookCard({
           <Text style={styles.rating}>{book.rating.toFixed(1)}</Text>
         </View>
       </View>
+      {onAddToCart ? (
+        <Pressable
+          onPress={handleAddToCart}
+          hitSlop={8}
+          style={({ pressed }) => [
+            pressed && styles.pressed,
+            styles.cartButton,
+            compact ? styles.cartCompact : styles.cartRow,
+          ]}
+        >
+          <Ionicons
+            name={isInCart ? 'cart' : 'cart-outline'}
+            size={18}
+            color={'#000'}
+          />
+        </Pressable>
+      ) : null}
     </Pressable>
   );
 }
@@ -154,4 +179,16 @@ const styles = StyleSheet.create({
   },
   favRow: { top: 12, right: 12 },
   favCompact: { top: 16, right: 16 },
+  cartButton: {
+    position: 'absolute',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#eeeeee',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  cartRow: { bottom: 12, right: 12 },
+  cartCompact: { bottom: 12, right: 12 },
 });

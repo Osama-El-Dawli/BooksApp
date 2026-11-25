@@ -1,22 +1,20 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { addToCart, removeFromCart } from '../redux/cartSlice';
 import { Book } from '../../home/types/bookType';
+import { toggleAddToCart } from '../redux/cartSlice';
 
 export default function useCart() {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(state => state.cart.cartItems);
 
-  const handelAddToCart = useCallback(
-    (book: Book) => {
-      dispatch(addToCart(book));
-    },
-    [dispatch],
+  const cartItemIds = useMemo(
+    () => new Set(cartItems.map(i => i.id)),
+    [cartItems],
   );
 
-  const handleRemoveFromCart = useCallback(
-    (id: string) => {
-      dispatch(removeFromCart(id));
+  const handleToggleAddToCart = useCallback(
+    (book: Book) => {
+      dispatch(toggleAddToCart(book));
     },
     [dispatch],
   );
@@ -28,8 +26,8 @@ export default function useCart() {
 
   return {
     cartItems,
-    handleRemoveFromCart,
-    handelAddToCart,
+    handleToggleAddToCart,
+    cartItemIds,
     isInCart,
   };
 }
