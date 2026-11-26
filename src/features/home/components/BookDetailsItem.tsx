@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Book } from '../types/bookType';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import ImageModal from './ImageModal';
 
 type Props = {
   book: Book;
@@ -15,17 +16,32 @@ export default function BookDetailsItem({
   isFavorite = false,
   onToggleFavorite: onToggleFavorite,
 }: Props) {
+  const [previewImage, setPreviewImage] = useState(false);
+
   return (
     <View style={styles.container}>
+      <ImageModal
+        imageUri={book.cover}
+        visible={previewImage}
+        onRequestClose={() => {
+          setPreviewImage(false);
+        }}
+      />
       <Animated.View
         entering={ZoomIn.duration(500).springify().damping(50)}
         style={styles.imageWrapper}
       >
-        <Animated.Image
-          resizeMode="cover"
-          source={{ uri: book.cover }}
-          style={styles.image}
-        />
+        <Pressable
+          onPress={() => {
+            setPreviewImage(true);
+          }}
+        >
+          <Animated.Image
+            resizeMode="cover"
+            source={{ uri: book.cover }}
+            style={styles.image}
+          />
+        </Pressable>
 
         <Pressable
           onPress={() => onToggleFavorite?.(book)}
