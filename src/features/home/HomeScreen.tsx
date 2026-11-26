@@ -146,7 +146,7 @@ export default function HomeScreen() {
           drawer.navigate('cartScreen');
         }}
         onProfilePress={() => {
-          drawer.navigate('profileScreen');
+          drawer.openDrawer();
         }}
       />
       <FlatList

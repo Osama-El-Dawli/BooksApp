@@ -4,6 +4,7 @@ import lottieFile from '../../assets/lotties/splash.json';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { mmkvStorage } from '../../storage/mmkvStorage';
 
 type nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -17,7 +18,8 @@ export default function SplashScreen() {
         loop={false}
         autoPlay
         onAnimationFinish={() => {
-          navigation.replace('Main');
+          const token = mmkvStorage.getItem('token');
+          token ? navigation.replace('Main') : navigation.replace('login');
         }}
       />
     </View>

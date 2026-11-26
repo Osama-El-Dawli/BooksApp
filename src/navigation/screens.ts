@@ -6,9 +6,11 @@ import BookWebView from '../features/home/BookWebView';
 import ProfileScreen from '../features/profile/ProfileScreen';
 import FavoritesScreen from '../features/favorites/FavoritesScreen';
 import CartScreen from '../features/cart/CartScreen';
+import LoginScreen from '../features/auth/LoginScreen';
 
 export const stackScreens: ScreenConfig<RootStackParamList>[] = [
   { screenName: 'splash', component: SplashScreen },
+  {screenName: 'login', component: LoginScreen},
   { screenName: 'bookDetails', component: BookDetailsScreen },
   { screenName: 'bookWebView', component: BookWebView },
 ];

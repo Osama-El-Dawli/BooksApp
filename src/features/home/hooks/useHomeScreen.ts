@@ -6,8 +6,9 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { bookThunk } from '../redux/bookThunk';
 import { Book } from '../types/bookType';
 import { toggleFavorites } from '../redux/bookSlice';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-type drawerNav = NativeStackNavigationProp<RootDrawerParamList>;
+type drawerNav = DrawerNavigationProp<RootDrawerParamList>;
 type stackNav = NativeStackNavigationProp<RootStackParamList>;
 
 export default function useHomeScreen() {

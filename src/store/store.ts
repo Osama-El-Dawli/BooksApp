@@ -3,7 +3,7 @@ import bookReducer from '../features/home/redux/bookSlice';
 import profileReducer from '../features/profile/redux/profileSlice';
 import cartReducer from '../features/cart/redux/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { mmkvStorage } from '../storage/mmkvStorage';
+import { mmkvReduxStorage } from '../storage/mmkvReduxStorage';
 import {
   FLUSH,
   PAUSE,
@@ -17,18 +17,18 @@ import {
 
 const booksPersistConfig = {
   key: 'books',
-  storage: mmkvStorage,
+  storage: mmkvReduxStorage,
   whitelist: ['favorites', 'allBooks', 'featuredBooks'],
 };
 
 const profilePersistConfig = {
   key: 'profile',
-  storage: mmkvStorage,
+  storage: mmkvReduxStorage,
 };
 
 const cartPersistConfig = {
   key: 'cart',
-  storage: mmkvStorage,
+  storage: mmkvReduxStorage,
 };
 
 const rootReducer = combineReducers({

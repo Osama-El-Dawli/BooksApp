@@ -9,6 +9,7 @@ module.exports = {
         allowUndefined: true,
       },
     ],
+    '@babel/plugin-transform-export-namespace-from',
     'react-native-worklets/plugin',
   ],
 };

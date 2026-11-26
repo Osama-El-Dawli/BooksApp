@@ -4,6 +4,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
   splash: undefined;
+  login: undefined;
   Main: NavigatorScreenParams<RootDrawerParamList> | undefined;
   bookDetails: {
     book: Book;
