@@ -34,7 +34,7 @@ export default function HomeScreen() {
     profileImage,
   } = useHomeScreen();
 
-  const { handleToggleAddToCart, cartItemIds } = useCart();
+  const { handleToggleAddToCart, cartItemIds, cartQuantities, handleIncrement, handleDecrement } = useCart();
 
   const featuredBooksItems = useCallback(
     ({ item, index }: { item: Book; index: number }) => (
@@ -49,7 +49,10 @@ export default function HomeScreen() {
           variant="compact"
           onPress={handelPress}
           onAddToCart={handleToggleAddToCart}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
           isInCart={cartItemIds.has(item.id)}
+          quantity={cartQuantities.get(item.id) ?? 0}
           isFavorite={favoritesIds.has(item.id)}
           onToggleFavorite={handleToggleFavorite}
         />
@@ -60,7 +63,10 @@ export default function HomeScreen() {
       favoritesIds,
       handleToggleFavorite,
       handleToggleAddToCart,
+      handleIncrement,
+      handleDecrement,
       cartItemIds,
+      cartQuantities,
     ],
   );
 
@@ -76,10 +82,13 @@ export default function HomeScreen() {
           book={item}
           variant="row"
           onAddToCart={handleToggleAddToCart}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
           onPress={handelPress}
           isFavorite={favoritesIds.has(item.id)}
           onToggleFavorite={handleToggleFavorite}
           isInCart={cartItemIds.has(item.id)}
+          quantity={cartQuantities.get(item.id) ?? 0}
         />
       </Animated.View>
     ),
@@ -162,47 +171,55 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f5f5' },
+  container: { flex: 1, backgroundColor: '#F7F4EF' },
   centered: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#F7F4EF',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 32,
   },
-  verticalList: { paddingHorizontal: 20, paddingBottom: 30 },
-  horizontalList: { paddingVertical: 6, paddingRight: 20 },
+  verticalList: { paddingHorizontal: 16, paddingBottom: 40 },
+  horizontalList: { paddingVertical: 8, paddingRight: 16 },
   sectionTitle: {
-    fontSize: 20,
-    fontFamily: 'Cairo-SemiBold',
-    color: '#000',
-    marginTop: 18,
-    marginBottom: 12,
+    fontSize: 22,
+    fontFamily: 'Cairo-Bold',
+    color: '#1A1A2E',
+    marginTop: 24,
+    marginBottom: 14,
+    letterSpacing: 0.3,
   },
   loadingText: {
-    marginTop: 12,
+    marginTop: 14,
     fontSize: 15,
     fontFamily: 'Cairo-Regular',
-    color: '#6b7280',
+    color: '#8A7F72',
   },
   errorTitle: {
     fontSize: 20,
     fontFamily: 'Cairo-SemiBold',
-    color: '#111',
+    color: '#1A1A2E',
+    marginTop: 16,
     marginBottom: 8,
   },
   errorMessage: {
     fontSize: 14,
     fontFamily: 'Cairo-Regular',
-    color: '#6b7280',
+    color: '#8A7F72',
     textAlign: 'center',
-    marginBottom: 24,
+    marginBottom: 28,
+    lineHeight: 22,
   },
   retryButton: {
-    backgroundColor: '#000',
-    paddingHorizontal: 32,
-    paddingVertical: 12,
-    borderRadius: 12,
+    backgroundColor: '#C8863A',
+    paddingHorizontal: 36,
+    paddingVertical: 14,
+    borderRadius: 14,
+    shadowColor: '#C8863A',
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 5,
   },
   retryText: {
     fontSize: 15,

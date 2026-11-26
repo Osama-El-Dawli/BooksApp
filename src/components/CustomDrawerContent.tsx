@@ -41,7 +41,7 @@ export default function CustomDrawerContent(
               <Image source={{ uri: imageUrl }} style={styles.avatar} />
             ) : (
               <View style={styles.avatar}>
-                <Icon name="person" size={44} color="#fff" />
+                <Icon name="person" size={44} color="#C8863A" />
               </View>
             )}
           </Pressable>
@@ -75,23 +75,26 @@ export default function CustomDrawerContent(
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, backgroundColor: '#F7F4EF' },
   header: {
     marginTop: 16,
-    borderRadius: 16,
-    backgroundColor: '#353535',
+    borderRadius: 20,
+    backgroundColor: '#1A1A2E',
     paddingHorizontal: 20,
-    paddingBottom: 24,
-    marginBottom: 16,
+    paddingBottom: 28,
+    marginBottom: 12,
+    marginHorizontal: 12,
   },
   avatar: {
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(200,134,58,0.25)',
+    borderWidth: 2,
+    borderColor: '#C8863A',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
+    marginBottom: 14,
   },
   name: {
     fontSize: 20,
@@ -101,11 +104,12 @@ const styles = StyleSheet.create({
   email: {
     fontSize: 13,
     fontFamily: 'Cairo-Regular',
-    color: 'rgba(255,255,255,0.7)',
+    color: 'rgba(255,255,255,0.6)',
+    marginTop: 2,
   },
   footer: {
     borderTopWidth: 1,
-    borderTopColor: '#eee',
+    borderTopColor: '#EDE8E0',
     paddingTop: 8,
   },
   logoutItem: { borderRadius: 14, marginHorizontal: 14 },

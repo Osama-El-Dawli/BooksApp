@@ -54,8 +54,8 @@ export default function FavoritesScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#eee' },
-  list: { marginTop: 12, paddingHorizontal: 16, paddingBottom: 24 },
+  container: { flex: 1, backgroundColor: '#F7F4EF' },
+  list: { marginTop: 12, paddingHorizontal: 16, paddingBottom: 32 },
   empty: {
     flex: 1,
     alignItems: 'center',
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: '#e8e8e8',
+    backgroundColor: '#EDE8E0',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
+    shadowColor: '#3D2B1F',
+    shadowOpacity: 0.12,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
     elevation: 8,
@@ -79,13 +79,13 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 22,
     fontFamily: 'Cairo-SemiBold',
-    color: '#111',
+    color: '#1A1A2E',
     marginTop: 24,
   },
   emptyText: {
     fontSize: 14,
     fontFamily: 'Cairo-Regular',
-    color: '#6b7280',
+    color: '#8A7F72',
     textAlign: 'center',
     marginTop: 6,
     lineHeight: 22,

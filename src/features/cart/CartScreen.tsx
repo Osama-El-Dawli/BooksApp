@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React, { useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomHeader from '../../components/CustomHeader';
@@ -12,17 +12,24 @@ import Animated, {
   LinearTransition,
 } from 'react-native-reanimated';
 import BookCard from '../home/components/BookCard';
-import { Book } from '../home/types/bookType';
+import { CartItem } from './redux/cartSlice';
 import EmptyItems from '../../components/EmptyItems';
 
 type nav = NativeStackNavigationProp<RootStackParamList>;
 
 export default function CartScreen() {
   const navigation = useNavigation<nav>();
-  const { cartItems, cartItemIds, handleToggleAddToCart } = useCart();
+  const {
+    cartItems,
+    cartItemIds,
+    cartQuantities,
+    handleToggleAddToCart,
+    handleIncrement,
+    handleDecrement,
+  } = useCart();
 
   const cartBooks = useCallback(
-    ({ item, index }: { item: Book; index: number }) => (
+    ({ item, index }: { item: CartItem; index: number }) => (
       <Animated.View
         entering={FadeInDown.springify()
           .damping(20)
@@ -33,21 +40,33 @@ export default function CartScreen() {
         <BookCard
           book={item}
           isInCart={cartItemIds.has(item.id)}
+          quantity={cartQuantities.get(item.id) ?? 0}
           onAddToCart={handleToggleAddToCart}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
           variant="row"
-          onPress={(book: Book) =>
-            navigation.navigate('bookDetails', { book: book })
-          }
+          onPress={book => navigation.navigate('bookDetails', { book })}
         />
       </Animated.View>
     ),
-    [navigation],
+    [
+      navigation,
+      cartItemIds,
+      cartQuantities,
+      handleToggleAddToCart,
+      handleIncrement,
+      handleDecrement,
+    ],
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title="My Cart" showBack onBack={() => navigation.goBack()} />
-      {cartItems.length == 0 ? (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F7F4EF' }}>
+      <CustomHeader
+        title="My Cart"
+        showBack
+        onBack={() => navigation.goBack()}
+      />
+      {cartItems.length === 0 ? (
         <EmptyItems
           title="No items in cart yet"
           subTitle="Tap the cart Icon on any book to save it here."
@@ -60,7 +79,7 @@ export default function CartScreen() {
           showsVerticalScrollIndicator={false}
           data={cartItems}
           renderItem={cartBooks}
-          keyExtractor={(item: Book) => item.id}
+          keyExtractor={(item: CartItem) => item.id}
         />
       )}
     </SafeAreaView>
@@ -71,5 +90,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 12,
     paddingHorizontal: 16,
+    paddingBottom: 32,
   },
 });

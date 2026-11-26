@@ -25,7 +25,7 @@ export default function LoginForm() {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <LoginTextInput
         name="email"
         control={control}
@@ -52,5 +52,18 @@ export default function LoginForm() {
 }
 
 const styles = StyleSheet.create({
-  btn: { marginTop: 12, marginBottom: 16 },
+  container: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#EDE8E0',
+    shadowColor: '#3D2B1F',
+    shadowOpacity: 0.08,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
+    marginBottom: 16
+  },
+  btn: { marginTop: 8, marginBottom: 4 },
 });

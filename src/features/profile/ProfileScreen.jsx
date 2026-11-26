@@ -55,7 +55,7 @@ export default function ProfileScreen() {
             {imageUri ? (
               <Image source={{ uri: imageUri }} style={styles.avatarImage} />
             ) : (
-              <Icon name="person" size={100} color="#353535" />
+              <Icon name="person" size={100} color="#1A1A2E" />
             )}
             <View style={styles.cameraBadge}>
               <Icon name="photo-camera" size={18} color="#fff" />
@@ -103,25 +103,27 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f5f5' },
+  container: { flex: 1, backgroundColor: '#F7F4EF' },
   content: {
     paddingHorizontal: 16,
-    paddingTop: 24,
+    paddingTop: 32,
     paddingBottom: 40,
     alignItems: 'center',
   },
   avatarWrapper: {
     width: 150,
     height: 150,
-    borderRadius: 100,
-    backgroundColor: '#d8d8d8',
+    borderRadius: 75,
+    backgroundColor: '#EDE8E0',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 14,
+    shadowColor: '#3D2B1F',
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
+    elevation: 10,
+    borderWidth: 3,
+    borderColor: '#C8863A',
   },
   avatarImage: {
     width: 150,
@@ -135,28 +137,28 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#353535',
+    backgroundColor: '#C8863A',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: '#f5f5f5',
+    borderWidth: 2.5,
+    borderColor: '#F7F4EF',
   },
   name: {
-    fontSize: 32,
-    fontFamily: 'Cairo-SemiBold',
-    color: '#111',
-    marginTop: 16,
+    fontSize: 30,
+    fontFamily: 'Cairo-Bold',
+    color: '#1A1A2E',
+    marginTop: 20,
   },
   username: {
-    fontSize: 18,
+    fontSize: 17,
     fontFamily: 'Cairo-Medium',
-    color: '#000',
-    marginTop: 2,
+    color: '#C8863A',
+    marginTop: 4,
   },
   email: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Cairo-Regular',
-    color: '#6b7280',
-    marginTop: 2,
+    color: '#8A7F72',
+    marginTop: 4,
   },
 });

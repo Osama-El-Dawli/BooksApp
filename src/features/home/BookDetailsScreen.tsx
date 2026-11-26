@@ -64,7 +64,7 @@ export default function BookDetailsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f5f5' },
+  container: { flex: 1, backgroundColor: '#F7F4EF' },
   content: {
     paddingHorizontal: 16,
     paddingTop: 24,

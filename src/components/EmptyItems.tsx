@@ -23,7 +23,7 @@ export default function EmptyItems({ title, subTitle, icon }: Props) {
         entering={ZoomIn.duration(500).springify().damping(50)}
         style={styles.emptyIconWrapper}
       >
-        <Icon name={icon} size={56} color="#000" />
+        <Icon name={icon} size={56} color="#C8863A" />
       </Animated.View>
 
       <Animated.Text
@@ -62,28 +62,28 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: '#e8e8e8',
+    backgroundColor: '#EDE8E0',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
+    shadowColor: '#3D2B1F',
+    shadowOpacity: 0.12,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
     elevation: 8,
   },
   emptyTitle: {
     fontSize: 22,
-    fontFamily: 'Cairo-SemiBold',
-    color: '#111',
+    fontFamily: 'Cairo-Bold',
+    color: '#1A1A2E',
     marginTop: 24,
   },
   emptyText: {
     fontSize: 14,
     fontFamily: 'Cairo-Regular',
-    color: '#6b7280',
+    color: '#8A7F72',
     textAlign: 'center',
-    marginTop: 6,
-    lineHeight: 22,
+    marginTop: 8,
+    lineHeight: 23,
   },
   emptyButtonWrapper: {
     alignSelf: 'stretch',

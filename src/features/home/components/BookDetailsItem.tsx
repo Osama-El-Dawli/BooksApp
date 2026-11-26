@@ -35,7 +35,7 @@ export default function BookDetailsItem({
           <Icon
             name={isFavorite ? 'favorite' : 'favorite-border'}
             size={22}
-            color={isFavorite ? '#000' : '#6b7280'}
+            color={isFavorite ? '#C8863A' : '#A89F94'}
           />
         </Pressable>
       </Animated.View>
@@ -67,7 +67,7 @@ export default function BookDetailsItem({
         entering={FadeInDown.delay(500).duration(500)}
         style={styles.ratingRow}
       >
-        <Icon name="star" color="gold" size={18} />
+        <Icon name="star" color="#C8863A" size={18} />
         <Text style={styles.rating}>{book.rating.toFixed(1)}</Text>
       </Animated.View>
     </View>
@@ -79,13 +79,13 @@ const styles = StyleSheet.create({
   imageWrapper: {
     width: 200,
     aspectRatio: 2 / 3,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
+    borderRadius: 18,
+    backgroundColor: '#E8E0D5',
+    shadowColor: '#3D2B1F',
+    shadowOpacity: 0.22,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 10,
   },
   favButton: {
     position: 'absolute',
@@ -94,7 +94,9 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 19,
-    backgroundColor: 'rgba(255,255,255,0.92)',
+    backgroundColor: 'rgba(247,244,239,0.94)',
+    borderWidth: 1,
+    borderColor: '#EDE8E0',
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 10,
@@ -104,44 +106,46 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 16,
-    backgroundColor: '#eee',
+    borderRadius: 18,
   },
   title: {
     fontSize: 22,
-    fontFamily: 'Cairo-SemiBold',
-    color: '#111',
+    fontFamily: 'Cairo-Bold',
+    color: '#1A1A2E',
     textAlign: 'center',
     marginTop: 24,
+    paddingHorizontal: 8,
   },
   subtitle: {
     fontSize: 14,
     fontFamily: 'Cairo-Regular',
-    color: '#9ca3af',
+    color: '#A89F94',
     textAlign: 'center',
     marginTop: 4,
   },
   author: {
-    fontSize: 15,
-    fontFamily: 'Cairo-Regular',
-    color: '#6b7280',
+    fontSize: 14,
+    fontFamily: 'Cairo-Medium',
+    color: '#8A7F72',
     textAlign: 'center',
-    marginTop: 8,
+    marginTop: 6,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 12,
-    backgroundColor: '#fff',
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    marginTop: 14,
+    backgroundColor: '#FFF5EB',
+    paddingHorizontal: 16,
+    paddingVertical: 7,
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#EDE8E0',
   },
   rating: {
-    fontSize: 16,
-    fontFamily: 'Cairo-Medium',
-    color: '#374151',
+    fontSize: 15,
+    fontFamily: 'Cairo-SemiBold',
+    color: '#C8863A',
     marginLeft: 6,
   },
 });

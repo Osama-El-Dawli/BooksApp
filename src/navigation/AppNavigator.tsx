@@ -16,16 +16,16 @@ function DrawerNavigator() {
       screenOptions={{
         headerShown: false,
         drawerType: 'slide',
-        overlayColor: 'rgba(0,0,0,0.35)',
+        overlayColor: 'rgba(0,0,0,0.3)',
         drawerStyle: {
           width: '75%',
-          backgroundColor: '#fff',
+          backgroundColor: '#F7F4EF',
           borderTopRightRadius: 28,
           borderBottomRightRadius: 28,
         },
         drawerActiveTintColor: '#fff',
-        drawerInactiveTintColor: '#4b5563',
-        drawerActiveBackgroundColor: '#353535',
+        drawerInactiveTintColor: '#5C5248',
+        drawerActiveBackgroundColor: '#C8863A',
         drawerItemStyle: {
           borderRadius: 14,
           marginHorizontal: 14,
