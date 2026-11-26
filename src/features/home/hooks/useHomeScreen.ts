@@ -1,5 +1,8 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootDrawerParamList, RootStackParamList } from '../../../navigation/types';
+import {
+  RootDrawerParamList,
+  RootStackParamList,
+} from '../../../navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -36,11 +39,14 @@ export default function useHomeScreen() {
   useEffect(() => {
     dispatch(bookThunk('all'));
     dispatch(bookThunk('featured'));
-  }, []);
+  }, [dispatch]);
 
-  const handelPress = useCallback((book: Book) => {
-    stack.navigate('bookDetails', { book: book });
-  }, []);
+  const handelPress = useCallback(
+    (book: Book) => {
+      stack.navigate('bookDetails', { book });
+    },
+    [stack],
+  );
 
   const retry = useCallback(() => {
     dispatch(bookThunk('all'));

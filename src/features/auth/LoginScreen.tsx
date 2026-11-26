@@ -4,13 +4,13 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   ScrollView,
-  Platform,
 } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LoginForm from './components/LoginForm';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CustomHeader from '../../components/CustomHeader';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 export default function LoginScreen() {
   return (
@@ -22,17 +22,23 @@ export default function LoginScreen() {
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <View style={styles.hero}>
+          <Animated.View
+            entering={FadeInDown.springify().duration(600)}
+            style={styles.hero}
+          >
             <View style={styles.logo}>
               <Icon name="auto-stories" size={65} color="#fff" />
             </View>
             <Text style={styles.title}>Welcome back</Text>
             <Text style={styles.subtitle}>Sign in to continue reading</Text>
-          </View>
+          </Animated.View>
 
-          <View style={styles.form}>
+          <Animated.View
+            entering={FadeInDown.springify().duration(600)}
+            style={styles.form}
+          >
             <LoginForm />
-          </View>
+          </Animated.View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

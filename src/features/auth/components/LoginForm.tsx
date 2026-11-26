@@ -19,7 +19,7 @@ export default function LoginForm() {
   });
   const navigation = useNavigation<Nav>();
 
-  const onSubmit = (data: loginValues) => {
+  const onSubmit = () => {
     mmkvStorage.setItem('token', 'true');
     navigation.replace('Main');
   };
