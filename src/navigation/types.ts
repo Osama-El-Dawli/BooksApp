@@ -13,6 +13,7 @@ export type RootStackParamList = {
     previewLink: string;
     title: string;
   };
+  pdfView: undefined;
 };
 
 export type RootDrawerParamList = {

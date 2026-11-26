@@ -7,12 +7,14 @@ import ProfileScreen from '../features/profile/ProfileScreen';
 import FavoritesScreen from '../features/favorites/FavoritesScreen';
 import CartScreen from '../features/cart/CartScreen';
 import LoginScreen from '../features/auth/LoginScreen';
+import BookViewer from '../features/home/BookViewer';
 
 export const stackScreens: ScreenConfig<RootStackParamList>[] = [
   { screenName: 'splash', component: SplashScreen },
   {screenName: 'login', component: LoginScreen},
   { screenName: 'bookDetails', component: BookDetailsScreen },
   { screenName: 'bookWebView', component: BookWebView },
+  { screenName: 'pdfView', component: BookViewer },
 ];
 
 export const DrawerScreens: ScreenConfig<RootDrawerParamList>[] = [

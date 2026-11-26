@@ -38,7 +38,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
@@ -79,14 +79,14 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Cairo-Bold.ttf</string>
-		<string>Cairo-Medium.ttf</string>
-		<string>Cairo-Regular.ttf</string>
-		<string>Cairo-SemiBold.ttf</string>
 		<string>MaterialIcons.ttf</string>
 		<string>Ionicons.ttf</string>
 		<string>FontAwesome.ttf</string>
 		<string>Feather.ttf</string>
+		<string>Cairo-Bold.ttf</string>
+		<string>Cairo-Medium.ttf</string>
+		<string>Cairo-Regular.ttf</string>
+		<string>Cairo-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>
