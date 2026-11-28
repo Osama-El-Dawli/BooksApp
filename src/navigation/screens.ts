@@ -11,7 +11,7 @@ import BookViewer from '../features/home/BookViewer';
 
 export const stackScreens: ScreenConfig<RootStackParamList>[] = [
   { screenName: 'splash', component: SplashScreen },
-  {screenName: 'login', component: LoginScreen},
+  { screenName: 'login', component: LoginScreen },
   { screenName: 'bookDetails', component: BookDetailsScreen },
   { screenName: 'bookWebView', component: BookWebView },
   { screenName: 'pdfView', component: BookViewer },
@@ -25,12 +25,6 @@ export const DrawerScreens: ScreenConfig<RootDrawerParamList>[] = [
     icon: 'home',
   },
   {
-    screenName: 'profileScreen',
-    component: ProfileScreen,
-    title: 'Profile',
-    icon: 'person',
-  },
-  {
     screenName: 'cartScreen',
     component: CartScreen,
     title: 'Cart',
@@ -41,5 +35,11 @@ export const DrawerScreens: ScreenConfig<RootDrawerParamList>[] = [
     component: FavoritesScreen,
     title: 'Favorites',
     icon: 'favorite',
+  },
+  {
+    screenName: 'profileScreen',
+    component: ProfileScreen,
+    title: 'Profile',
+    icon: 'person',
   },
 ];

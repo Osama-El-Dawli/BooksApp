@@ -49,7 +49,7 @@ export default function BookDetailsScreen() {
         style={styles.buttonWrapper}
       >
         <CustomButton
-          style={{}}
+          style={{marginHorizontal: 16}}
           text="Preview PDF"
           onPress={() => navigate.navigate('pdfView')}
         />

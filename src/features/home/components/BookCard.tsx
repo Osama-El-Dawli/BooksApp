@@ -14,6 +14,7 @@ type Props = {
   isInCart?: boolean;
   quantity?: number;
   variant?: string;
+  showFav?: boolean;
 };
 
 function BookCard({
@@ -24,6 +25,7 @@ function BookCard({
   onAddToCart,
   onIncrement,
   onDecrement,
+  showFav = true,
   isFavorite = false,
   isInCart = false,
   quantity = 0,
@@ -78,18 +80,15 @@ function BookCard({
     );
   };
 
-  // ── COMPACT variant ──
   if (compact) {
     return (
       <Pressable
         onPress={handlePress}
         style={({ pressed }) => [styles.compactCard, pressed && styles.pressed]}
       >
-        {/* Cover */}
         <View style={styles.compactCoverWrapper}>
           <Image source={{ uri: book.cover }} style={styles.compactCover} />
 
-          {/* Fav badge (top-right) */}
           <Pressable
             onPress={handleFavorite}
             hitSlop={8}
@@ -107,7 +106,6 @@ function BookCard({
             />
           </Pressable>
 
-          {/* Rating badge (bottom-left) */}
           <View style={[styles.ratingOverlay, styles.badgeBL]}>
             <Ionicons name="star" color="#C8863A" size={11} />
             <Text style={styles.ratingOverlayText}>
@@ -116,7 +114,6 @@ function BookCard({
           </View>
         </View>
 
-        {/* Info */}
         <View style={styles.compactInfo}>
           <View>
             <Text style={styles.compactTitle} numberOfLines={2}>
@@ -127,7 +124,6 @@ function BookCard({
             </Text>
           </View>
 
-          {/* Footer */}
           {onAddToCart ? (
             <View style={styles.compactFooter}>
               {isInCart && onIncrement && onDecrement ? (
@@ -164,18 +160,15 @@ function BookCard({
     );
   }
 
-  // ── ROW variant ──
   return (
     <Pressable
       onPress={handlePress}
       style={({ pressed }) => [styles.rowCard, pressed && styles.pressed]}
     >
-      {/* Cover */}
       <View style={styles.rowCoverWrapper}>
         <Image source={{ uri: book.cover }} style={styles.rowCover} />
       </View>
 
-      {/* Info & Actions */}
       <View style={styles.rowBody}>
         <View style={styles.rowTop}>
           <View style={styles.rowTitleBlock}>
@@ -192,21 +185,23 @@ function BookCard({
             </Text>
           </View>
 
-          <Pressable
-            onPress={handleFavorite}
-            hitSlop={8}
-            style={({ pressed }) => [
-              styles.favBtn,
-              isFavorite && styles.favBtnActive,
-              pressed && styles.pressed,
-            ]}
-          >
-            <Ionicons
-              name={isFavorite ? 'heart' : 'heart-outline'}
-              size={17}
-              color={isFavorite ? '#C8863A' : '#A89F94'}
-            />
-          </Pressable>
+          {showFav ? (
+            <Pressable
+              onPress={handleFavorite}
+              hitSlop={8}
+              style={({ pressed }) => [
+                styles.favBtn,
+                isFavorite && styles.favBtnActive,
+                pressed && styles.pressed,
+              ]}
+            >
+              <Ionicons
+                name={isFavorite ? 'heart' : 'heart-outline'}
+                size={17}
+                color={isFavorite ? '#C8863A' : '#A89F94'}
+              />
+            </Pressable>
+          ) : null}
         </View>
 
         <View style={styles.rowFooter}>

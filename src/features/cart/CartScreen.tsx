@@ -39,6 +39,7 @@ export default function CartScreen() {
       >
         <BookCard
           book={item}
+          showFav={false}
           isInCart={cartItemIds.has(item.id)}
           quantity={cartQuantities.get(item.id) ?? 0}
           onAddToCart={handleToggleAddToCart}
